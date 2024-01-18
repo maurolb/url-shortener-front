@@ -29,7 +29,7 @@ export const ResultCard = ({ shortUrl = "" }) => {
           id="sorturl"
           ref={textToCopyRef}
           className="p-4 text-green-300"
-        >{`localhost:5173/${shortUrl}`}</div>
+        >{`https://shortrl-seven.vercel.app/${shortUrl}`}</div>
         <div className="w-[14%] bg-slate-900 ml-auto rounded-r-lg">
           <button
             type="button"
