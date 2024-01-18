@@ -13,6 +13,7 @@ const router = createBrowserRouter([
   {
     path: "/:shortId",
     element: <Redirect />,
+    // element: <h1>Hello</h1>,
   },
 ]);
 

@@ -10,7 +10,8 @@ export const Redirect = () => {
   const [destination, setDestination] = useState<null | string>(null);
   const [error, setError] = useState<string>("");
   const location = useLocation();
-  const shortId: string = location.pathname.split("/")[1];
+  const array: string[] = location.pathname.split("/");
+  const shortId: string = array[array.length - 1];
 
   useEffect(() => {
     handleRedirect();
@@ -23,6 +24,8 @@ export const Redirect = () => {
   }, [destination]);
 
   const handleRedirect = async () => {
+    console.log(shortId);
+
     return axios
       .get(`${envs.API_URL}/api/url/${shortId}`)
       .then((resp) => setDestination(resp.data.destination))
