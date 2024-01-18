@@ -1,13 +1,12 @@
 import { useRef, useState } from "react";
 import { Copy } from "../icons/copy";
 import copy from "clipboard-copy";
-import { useLocation } from "react-router-dom";
 
 export const ResultCard = ({ shortUrl = "" }) => {
   const textToCopyRef = useRef<HTMLDivElement>(null);
   const [copiadou, setCopiadou] = useState<boolean>(false);
-  const location = useLocation();
-  const domain: string = location.pathname;
+
+  const fullPath = window.location.href;
 
   const handleCopy = async () => {
     try {
@@ -32,7 +31,7 @@ export const ResultCard = ({ shortUrl = "" }) => {
           id="sorturl"
           ref={textToCopyRef}
           className="p-4 text-green-300"
-        >{`${domain}/${shortUrl}`}</div>
+        >{`${fullPath}${shortUrl}`}</div>
         <div className="w-[14%] bg-slate-900 ml-auto rounded-r-lg">
           <button
             type="button"
