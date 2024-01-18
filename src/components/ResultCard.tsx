@@ -29,7 +29,7 @@ export const ResultCard = ({ shortUrl = "" }) => {
           id="sorturl"
           ref={textToCopyRef}
           className="p-4 text-green-300"
-        >{`https://tinrl-f846a.web.app/${shortUrl}`}</div>
+        >{`https://urlapp-8fefe.web.app/${shortUrl}`}</div>
         <div className="w-[14%] bg-slate-900 ml-auto rounded-r-lg">
           <button
             type="button"
