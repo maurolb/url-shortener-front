@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { ResultCard } from "./ResultCard";
 import { Spinner } from "flowbite-react";
-import { envs } from "../Config";
+
+import { newDoc } from "../firebase/api";
 
 export const SearchBar = () => {
   const [destination, setDestination] = useState<string>("");
@@ -22,17 +22,10 @@ export const SearchBar = () => {
 
     setLoader(true);
 
-    const result = await axios
-      .post(`${envs.API_URL}/api/url`, {
-        destination,
-      })
-      .then((resp) => resp.data)
-      .catch((error) =>
-        console.log("Error trying to create short url: ", error)
-      );
+    const data = await newDoc(destination);
 
     setLoader(false);
-    setShortUrl(result.shortId);
+    setShortUrl(data.shortId);
   };
 
   return (

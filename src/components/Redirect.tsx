@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Layout } from "./Layout";
 import { Spinner } from "flowbite-react";
-import { envs } from "../Config";
+
 import tom from "../assets/tom.png";
+import { getByShortId } from "../firebase/api";
 
 export const Redirect = () => {
   const [destination, setDestination] = useState<null | string>(null);
@@ -24,15 +24,13 @@ export const Redirect = () => {
   }, [destination]);
 
   const handleRedirect = async () => {
-    console.log(shortId);
+    const docs = await getByShortId(shortId);
+    if (docs!.size == 0 || docs == undefined) return setError("Error");
 
-    return axios
-      .get(`${envs.API_URL}/api/url/${shortId}`)
-      .then((resp) => setDestination(resp.data.destination))
-      .catch((error) => {
-        setError(error.message);
-        console.log(error.message);
-      });
+    docs!.forEach((doc: any) => {
+      const link = doc.data();
+      setDestination(link.destination);
+    });
   };
 
   return (
